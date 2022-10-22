@@ -1,5 +1,109 @@
-body{
-    margin: 0;
-    background: paleturquoise;
+.menu-4 {
     text-align: center;
-}
+    text-transform: uppercase;
+    font-weight: 500;
+  }
+  .menu-4 * {
+    box-sizing: border-box;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu-4 li {
+    display: inline-block;
+    list-style: outside none none;
+    margin: 0 1.5em;
+    overflow: hidden;
+  }
+  .menu-4 a {
+    padding: 0.3em 0;
+    color: #212121;
+    position: relative;
+    display: inline-block;
+    letter-spacing: 1px;
+    margin: 0;
+    text-decoration: none;
+  }
+  .menu-4 a:before,
+  .menu-4 a:after {
+    position: absolute;
+    -webkit-transition: all 0.35s ease;
+    transition: all 0.35s ease;
+  }
+  .menu-4 a:before {
+    bottom: 100%;
+    display: block;
+    height: 3px;
+    width: 100%;
+    content: "";
+    background-color: #e67e22;
+  }
+  .menu-4 a:after {
+    padding: 0.3em 0;
+    position: absolute;
+    bottom: 100%;
+    left: 0;
+    content: attr(data-hover);
+    color: #212121;
+    white-space: nowrap;
+  }
+  .menu-4 li:hover a,
+  .menu-4 .current a {
+    transform: translateY(100%);
+  }
+  .grid-container {
+    padding: 20px;
+    display: grid;
+    grid-gap: 20px;
+    grid-auto-rows: 1fr;
+    grid-template-columns: repeat(2, 1fr);
+    grid-auto-flow:dense;
+    counter-reset: albumList;
+  }
+ 
+  .item {
+    aspect-ratio: 1;
+    background: rgb(0, 0, 0);
+    display: flex;
+    
+  }
+  
+  /* Number */
+  .item:before {
+    /*counter-increment: albumList;
+    content: counter(albumList);*/
+    margin: auto;
+    font-size: 40px;
+    color: #000000;
+  }
+  
+  @media screen and (min-width: 40em) and (max-width: 63.99875em) {
+    /* 640 ~ 1023 */
+    .grid-container {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    .item:nth-child(6n + 1),
+    .item:nth-child(6n + 6){
+      grid-area: span 2/span 2;
+    }
+    .item:nth-child(6n + 5) {
+      grid-column: 1;
+    }
+  
+  }
+  
+  @media print, screen and (min-width: 64em) {
+    /* 1024+ */
+    .grid-container {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    .item:nth-child(10n + 1),
+    .item:nth-child(10n + 10){
+      grid-area: span 2/span 2;
+    }
+    .item:nth-child(10n + 8) {
+      grid-column: 1;
+    }
+    .item:nth-child(10n + 9) {
+      grid-column: 2;
+    }
+  }
