@@ -8,6 +8,55 @@
         <link href="styling.js">
     </head>
     <body>
-        hahahhahah
+    <section id="lorameshcloud">
+        <div class="grid-container">
+            <div class="item"><img style="max-width: 100%;max-height: auto; object-fit: contain;" src="../Andridge_Munene/images/3D DIAGRAM UPDATE 1.JPG"></div>
+            <div class="item"><img style="max-width: 100%;max-height: auto; object-fit: contain;" src="../Andridge_Munene/images/3D DIAGRAM UPDATE 2.JPG"></div>
+            <p> <b>LORA MESH CLOUD FOR ANALOG SENSORS</b><br>
+                It is based on ATMega328 tqfp microprocessor. ICSP programming is need to load the bootloader to the tqfp chip.
+                V-USB is used for software-only implementation of a low-speed USB device for Atmel’s AVR® microcontrollers, making it possible to build USB hardware with almost any AVR® microcontroller, not requiring any additional chip. Operating the AVR at higher voltages exceeds the common mode range of many USB chips. Therefore, a voltage regulator from 5v to 3v is needed. If there’s need to run the AVR at 5 V, add 3.6 V zener diodes at D+ and D- to limit the voltage.
+                <p><b>Advantages over Microcontrollers with USB Hardware</b><br>
+                   •	Standard AVR controllers are usually easier to obtain.
+                   •	Most of the controllers with USB support are only available in SMD, which is almost impossible to handle for hobbyists.
+                   •	V-USB comes with a free shared Vendor- / Product-ID pair.
+                   •	A good free ANSI-C compiler (GNU gcc) and a free development system for Windows (WinAVR) are available for AVR.
+                   •	AVR controllers are faster than most of the controllers with integrated USB and cost less.
+                   •	Stand-alone operation: Some of the USB controllers download their firmware from the host computer into RAM. They don’t work without connection to the host.
+                   •	AVR controllers have on-chip EEPROM.
+                </p>
+                <p>
+                   <b>Advantages over separate USB Peripheral</b><br>
+                   •	No additional cost.
+                   •	No additional hardware complexity: simpler PCB, less failures.
+                   •	No additional power consumption when USB is disconnected. This may be relevant for battery powered devices.
+                   •	More freedom in the choice of USB descriptors.
+                   •	V-USB comes with a free shared Vendor- / Product-ID pair.
+                   •	Little hardware resources used: only two to three I/O pins.
+                </p>
+                <p>
+                   <b>Advantages over other Firmware-Only Implementations</b><br>
+                   •	All customizable code written in ANSI-C and thus easier to maintain.
+                   •	Modular concept: easier to integrate into existing designs.
+                   •	Slightly smaller code size in spite of high level language modules.
+                   •	Faster: All encoding/decoding (USB requires NRZI coding and bit stuffing) is done in real-time, not in the main loop after storing away the raw data stream.
+                   •	More endpoints, USB descriptors can be better customized.
+                   •	V-USB comes with a free shared Vendor- / Product-ID pair.
+                   •	The level of standards conformance is documented (description of limitations and potential problems).
+                   •	Licensed under the terms of the GNU General Public License or alternatively under a commercial license.
+                
+                </p>
+                
+               </p>
+           <p><b>LoRa (“long range”) (U3)radio technology.</b><br> It is intended for reliable communication of small amounts of data over long distances (several kilometers). It’s also geared toward low power applications.
+            Mesh networking of LoRa nodes. Mesh networking is a network topology where nodes communicate with one another either directly (if they are in range) or indirectly via intermediate nodes. For example, if node 1 wants to send a message to node 2, but is too far away from node 2, the message will automatically be routed via an intermediate node that is in range, say Node 3. </p>
+            <p><b>The Radiohead library will be used in this project, because it includes an implementation of mesh networking.</b><br>There is also a transistor as switch if you want to regulate work of LoRa module (RFM95W) with it. When you give signal from digital pin, it will turn on or off</p>
+        <p><b>RTC</b> is based on <b>DS3231 chip</b> and can be used for setting alarm for wakeup time of board. It is connected to D2 pin so you can interrupt microprocessor. It is great if you want change wake up intervals from distance. It is possible with downlink messages from TTN server.</p>
+        <p>
+        <b>The NodeMCU is great for connecting cloud and will be used to send mqtt messages to a TTN server.</b> On nodemcu side we need to receive the messages sent by Arduino over serial. It is powered by 3V.
+Arduino will send the messages in JSON format
+A 3.3V to 5V logic level shifter with 3.3V for the node MCU board and 5V for the atmega 328p allows for the software serial communication between the two IC’s
+        </p>
+    </div>
+    </section>
     </body>
 </html>
