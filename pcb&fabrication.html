@@ -8,6 +8,7 @@
         <link href="styling.js">
     </head>
     <body>
+        <h1>LORA MESH CLOUD FOR ANALOG IOT DEVICES</h1>
     <section id="lorameshcloud">
         <div class="grid-container">
             <div class="item"><img style="max-width: 100%;max-height: auto; object-fit: contain;" src="../Andridge_Munene/images/3D DIAGRAM UPDATE 1.JPG"></div>
@@ -59,8 +60,66 @@ A 3.3V to 5V logic level shifter with 3.3V for the node MCU board and 5V for the
         </p>
     
     </section>
+    <h1>PID CONTROL SYSTEM FOR BRUSHED MOTORS</h1>
     <section id="brushedmotorquadcopter">
-        
+        <div class="grid-container">
+            <div class="item"><img style="max-width: 100%;max-height: auto; object-fit: contain;" src="../Andridge_Munene/images/Capture.JPG"></div>
+        </div>
+        <p>
+            <b>CONTROL SYSTEMS</b>
+A control system is defined as a system of devices that manages, commands, directs, or regulates the behavior of other devices or systems to achieve a desired result. A control system achieves this through control loops, which are a process designed to maintain a process variable at a desired set point.Simply a system, which controls other systems.
+        </p>
+        <p>
+            <b>Requirements of a control system:</b><br>
+<b>Accuracy:</b> Accuracy is the measurement tolerance of the instrument and defines the limits of the errors made when the instrument is used in normal operating conditions.<br>
+<b>Sensitivity:</b> The parameters of a control system are always changing with the change in surrounding conditions, internal disturbance, or any other parameters.
+This change can be expressed in terms of sensitivity. Any control system should be insensitive to such parameters but sensitive to input signals only.<br>
+<b>Noise: </b>An undesired input signal is known as noise. A good control system should be able to reduce the noise effect for better performance.<br>
+<b>Stability:</b>It is an important characteristic of the control system. For the bounded input signal, the output must be bounded and if the input is zero then the output must be zero then such a control system is said to be a stable system.<br>
+<b>Bandwidth:</b>An operating frequency range decides the bandwidth of the control system. Bandwidth should be as large as possible for the frequency response of a good control system.<br>
+<b>Speed:</b>It is the time taken by the control system to achieve its stable output. A good control system possesses high speed. The transient period for such a system is very small.<br>
+<b>Oscillation:</b> A small number of oscillations or constant oscillations of output tends to indicate the system to be stable.<br>
+        </p>
+        <p>
+            In any control system, the output is affected due to a change in environmental conditions or any kind of disturbance. So one signal is taken from the output and is fed back to the input.
+This signal is compared with a reference input and the error signal is generated. This error signal is applied to the controller and the output is corrected. Such a system is called a feedback system. 
+        </p>
+        <p>
+            When the feedback signal is positive then the system called a positive feedback system. For a positive feedback system, the error signal is the addition of a reference input signal and a feedback signal.
+When the feedback signal is negative then the system is called a negative feedback system. For the negative feedback system, the error signal is given by the difference between the reference input signal and the feedback signal.
+        </p>
+        <p>
+            <b>PID CONTROLLER</b><br>
+PID (proportional integral derivative) controllers use a control loop feedback mechanism to control process variables and are the most accurate and stable controller.
+The output of a PID controller, which is equal to the control input to the plant, is calculated in the time domain from the feedback error 
+        </p>
+        <p>
+            <b>Euler angles & MPU6040 IMU</b><br>
+
+We will have the acceleration of the 3 axes: X, Y and Z, the three dimensions of our 3D space. Let's just call for example, the IMU movement upwards, the Z axis, forward and backward the Y axis and side to side the X axis. Earth's gravity has an acceleration of approx. 9.8 m / s², perpendicular to the ground. Therefore, the IMU also detects the acceleration of terrestrial gravity. But the values that we get from the IMU won't be in "g" units. This module works with 8 bits registers. Each acceleration value is stored in two registers, low and high bits. The sum of this registers give us 16 bits of data. This data will have a maximum of 16 bits so we will have a 2^16=65536 maximum acceleration value including the positive or negative sign. If we read the datasheet of this module we will find that "1g" equals to 16384. So if we read the acceleration value and divide that value to 16384 we obtain the acceleration in "g" units.
+        </p>
+        <p>
+            Thanks to terrestrial gravity you can use the accelerometer readings to know the angle of inclination with respect to the X axis or Y axis
+        </p>
+        <p>
+            <b>Noise & Errors</b><br>
+You have to eliminate the noise, the drift and get the accelerometer to not change its angle when it detects a force other than gravity
+One of the best is the famous Kálman Filter, which is used in aircraft, rockets and geostationary satellites.Not very practical with an Arduino
+Complementary Filter is actually a union of two different filters: a High-pass Filter for the gyroscope and a Low-pass Filter for the Accelerometer. The first lets only pass the values above a certain limit, unlike the Low-pass filter, which only allows those below.
+        </p>
+        <p>
+            <b>PID Code Overview</b><br>
+	•	First calculate the error between the desired angle and the real measured angle.<br>
+	•	Next the proportional value of the PID is just a proportional constant multiplied by the error<br>
+	•	The integral part should only act if we are close to the desired position but we want to fine tune the error. That's why I've made an if operation for an error between -2 and 2 degree. To integrate we just sum the previous integral value with the error multiplied by the integral constant. This will integrate (increase) the value each loop till we reach the 0 point.<br>
+	•	The last part is the derivate. The derivate acts upon the speed of the error. As we know the speed is the amount of error that produced in a certain amount of time divided by that time. For that we will use a variable called previous error. We subtract that value from the actual error and divide all by the elapsed time. Finally, we multiply the result by the derivate constant.<br>
+	•	The final PID values is the sum of each of this 3 parts.<br>
+	•	We know that the min value of PWM signal is 1000us and the max is 2000. So that tells us that the PID value can/s oscillate more than -1000 and 1000 because when we have a value of 2000us the maximum value that we could subtract is 1000 and when we have a value of 1000us for the PWM signal, the maximum value that we could add is 1000 to reach the maximum 2000us<br>
+	•	Finally, we calculate the PWM width. We sum the desired throttle and the PID value.<br>
+	•	Once again we map the PWM values to be sure that we won't pass the min and max values. Yes, we've already mapped the PID values. But for example, for throttle value of 1300, if we sum the max PID value we would have 2300us and that will mess up the motor.<br>
+	•	Finally using the servo function, we create the PWM pulses with the calculated width for each pulse.<br>
+	•	Remember to store the previous error.<br>
+        </p>
     </section>
     </body>
 </html>
