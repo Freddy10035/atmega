@@ -1,5 +1,61 @@
+.body{
+  font-family: Century Gothic;
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.stage{
+  height: 170px;
+  width: 250px;
+  margin-left: auto;
+  margin-right: auto;
+}
+.p{
+  font-size: 35px;
+  text-align: center;
+  margin-top: 0;
+  cursor: pointer;
+  width: 100%;
+  background: #f95c01;
+  border-radius: 10px;
+  font-family: Century Gothic;
+  letter-spacing: 5px;
+}
+.div{
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 10px;
+  width: 200px;
+  height: 40px;
+  margin-top: 4%;
+ transition-duration: 0.2s;
+
+}
+.p:hover{
+  background: white;
+  color: black;
+}
+.div:nth-child(odd){
+  transform: perspective(300px) rotateY(45deg);
+  box-shadow: -2px 2px 7px gray;
+}
+.div:nth-child(even){
+  transform: perspective(300px) rotateY(-45deg);
+    box-shadow: 2px 2px 7px gray;
+}
+.div:hover{
+  transform: rotateY(0);
+  background: white;
+  color: black;
+  box-shadow: 0px 0px 0px;
+}
+
+
+
 grid-container {
-  padding: 2px;
+  padding: 1px;
   display: grid;
   grid-gap: 2px;
   grid-auto-rows: 1fr;
@@ -10,7 +66,7 @@ grid-container {
 
 .item {
   aspect-ratio: 1;
- /*background: #ccc;*/
+ background: #ccc;
   display: flex;
   
 }
@@ -20,14 +76,14 @@ grid-container {
  /* counter-increment: albumList;
   content: counter(albumList);*/
   margin: auto;
-  font-size: 40px;
+  font-size: 4px;
   color: #000000;
 }
 
 @media screen and (min-width: 40em) and (max-width: 63.99875em) {
   /* 640 ~ 1023 */
   .grid-container {
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .item:nth-child(6n + 1),
   .item:nth-child(6n + 6){
@@ -42,7 +98,7 @@ grid-container {
 @media print, screen and (min-width: 64em) {
   /* 1024+ */
   .grid-container {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
   .item:nth-child(10n + 1),
   .item:nth-child(10n + 10){
@@ -52,7 +108,7 @@ grid-container {
     grid-column: 1;
   }
   .item:nth-child(10n + 9) {
-    grid-column: 2;
+    grid-column: 4;
   }
 }
 a[href^="#"] {
