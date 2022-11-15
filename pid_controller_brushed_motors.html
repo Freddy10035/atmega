@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>LORA MESH CLOUD FOR ANALOG IOT DEVICES</title>
+    <title>PID CONTROL SYSTEM FOR DC MOTORS</title>
     <link rel="stylesheet" href="./styles.css">
     <style>
 
@@ -18,7 +18,7 @@
   </head>
   <body>
     <header class="col-span">
-      <h1 class="title">LORA MESH CLOUD FOR ANALOG SENSORS</h1>
+      <h1 class="title">PID CONTROL SYSTEM FOR DC MOTORS</h1>
      
         <div class="author">
           <div>Andridge Munene Ngare</div>
@@ -30,76 +30,73 @@
     </header>
     <div class="abstract">
       <h1>Abstract</h1>
-      <p>Updated 15/11/2022. In this sample paper, Open seasons Co., Inc. describes the elctronic design for reliable communication of small amounts of data over long distances (several kilometers). It’s also geared toward low power applications.
-        Mesh networking of LoRa nodes is a network topology where nodes communicate with one another either directly (if they are in range) or indirectly via intermediate nodes. For example, if node 1 wants to send a message to node 2, but is too far away from node 2, the message will automatically be routed via an intermediate node that is in range, say Node 3. </p>
-        
-    
+      <p>Updated 15/11/2022. In this sample paper, Open seasons Co., Inc. describes the elctronic design DC motor controllers and a PID controll system  </p>
     </p>
 
-      <h2>Lora 1278X module </h2>
+      <h2>Control Systems </h2>
       <p>
-        <p><b>The Radiohead library will be used in this project, because it includes an implementation of mesh networking.</b><br>There is also a transistor as switch if you want to regulate work of LoRa module (RFM95W) with it. When you give signal from digital pin, it will turn on or off</p>
-        <span style="color: red;">Radiohead library will be included with next publication.</span>
+        <p>A control system is defined as a system of devices that manages, commands, directs, or regulates the behavior of other devices or systems to achieve a desired result. A control system achieves this through control loops, which are a process designed to maintain a process variable at a desired set point.</p>
+        <span style="color: red;">A system, which controls other systems.</span>
       </p>
 
-      <h2>RTC clock</h2>
-      <p><p><b>RTC</b> is based on <b>DS3231 chip</b> and can be used for setting alarm for wakeup time of board. It is connected to D2 pin so you can interrupt microprocessor. It is great if you want change wake up intervals from distance. It is possible with downlink messages from TTN server.</p></span></p>
+      <h2>Requirements of a control system:</h2>
+     <p>Accuracy: Accuracy is the measurement tolerance of the instrument and defines the limits of the errors made when the instrument is used in normal operating conditions.
+    </p>
+      <p> Sensitivity: The parameters of a control system are always changing with the change in surrounding conditions, internal disturbance, or any other parameters.
+This change can be expressed in terms of sensitivity. Any control system should be insensitive to such parameters but sensitive to input signals only.
+</p><p>Noise: An undesired input signal is known as noise. A good control system should be able to reduce the noise effect for better performance.
+</p><p>Stability: It is an important characteristic of the control system. For the bounded input signal, the output must be bounded and if the input is zero then the output must be zero then such a control system is said to be a stable system.
+</p><p>Bandwidth: An operating frequency range decides the bandwidth of the control system. Bandwidth should be as large as possible for the frequency response of a good control system.
+</p><p>Speed: It is the time taken by the control system to achieve its stable output. A good control system possesses high speed. The transient period for such a system is very small.
+</p><p>Oscillation: A small number of oscillations or constant oscillations of output tends to indicate the system to be stable.
+</p></span></p>
     </div>
 
     <h1>Introduction</h1>
-    <p>It is based on ATMega328 tqfp microprocessor. ICSP programming is need to load the bootloader to the tqfp chip.
-      V-USB is used for software-only implementation of a low-speed USB device for Atmel’s AVR® microcontrollers, making it possible to build USB hardware with almost any AVR® microcontroller, not requiring any additional chip. Operating the AVR at higher voltages exceeds the common mode range of many USB chips. Therefore, a voltage regulator from 5v to 3v is needed. If there’s need to run the AVR at 5 V, add 3.6 V zener diodes at D+ and D- to limit the voltage.</p>
+    <p>A closed loop control system is called an automatic control system.  
+        In any control system, the output is affected due to a change in environmental conditions or any kind of disturbance. So one signal is taken from the output and is fed back to the input.
+        This signal is compared with a reference input and the error signal is generated. This error signal is applied to the controller and the output is corrected. Such a system is called a feedback system.When the feedback signal is positive then the system called a positive feedback system. For a positive feedback system, the error signal is the addition of a reference input signal and a feedback signal.
+        When the feedback signal is negative then the system is called a negative feedback system. For the negative feedback system, the error signal is given by the difference between the reference input signal and the feedback signal.</p>
 
-    <h1>Advantages over Microcontrollers with USB Hardware</h1>
-    <p>•	Standard AVR controllers are usually easier to obtain.
-      •	Most of the controllers with USB support are only available in SMD, which is almost impossible to handle for hobbyists.
-      •	V-USB comes with a free shared Vendor- / Product-ID pair.
-      •	A good free ANSI-C compiler (GNU gcc) and a free development system for Windows (WinAVR) are available for AVR.
-      •	AVR controllers are faster than most of the controllers with integrated USB and cost less.
-      •	Stand-alone operation: Some of the USB controllers download their firmware from the host computer into RAM. They don’t work without connection to the host.
-      •	AVR controllers have on-chip EEPROM.
+    <h1>PID CONTROLLER</h1>
+    <p>PID (proportional integral derivative) controllers use a control loop feedback mechanism to control process variables and are the most accurate and stable controller.
+        The output of a PID controller, which is equal to the control input to the plant, is calculated in the time domain from the feedback error 
     </p>
 
-    <h1>Advantages over separate USB Peripheral</h1>
-    <p>•	No additional cost.
-      •	No additional hardware complexity: simpler PCB, less failures.
-      •	No additional power consumption when USB is disconnected. This may be relevant for battery powered devices.
-      •	More freedom in the choice of USB descriptors.
-      •	V-USB comes with a free shared Vendor- / Product-ID pair.
-      •	Little hardware resources used: only two to three I/O pins.
+    <h1>Euler angles and MPU6040 IMU</h1>
+    <p>We will have the acceleration of the 3 axes: X, Y and Z, the three dimensions of our 3D space. Let's just call for example, the IMU movement upwards, the Z axis, forward and backward the Y axis and side to side the X axis. Earth's gravity has an acceleration of approx. 9.8 m / s², perpendicular to the ground. Therefore, the IMU also detects the acceleration of terrestrial gravity. But the values that we get from the IMU won't be in "g" units. This module works with 8 bits registers. Each acceleration value is stored in two registers, low and high bits. The sum of this registers give us 16 bits of data. This data will have a maximum of 16 bits so we will have a 2^16=65536 maximum acceleration value including the positive or negative sign. If we read the datasheet of this module we will find that "1g" equals to 16384. So if we read the acceleration value and divide that value to 16384 we obtain the acceleration in "g" units.Thanks to terrestrial gravity you can use the accelerometer readings to know the angle of inclination with respect to the X axis or Y axis.Suppose the IMU is perfectly aligned with the floor. Then, as you can see in the picture below, the Z axis will be 1g=9.8, and the other two axes will be 0. Now suppose we turn the IMU 90 degrees. Now it is the X axis that is perpendicular to the ground, therefore it will mark the acceleration of 1g gravity.We know that the gravity is 9.8 m / s², and we know how to measure the three axes of the accelerometer, by trigonometry it is possible to calculate the angle of inclination of the IMU. The formulas to calculate the angles are:
+
+        Since the angle is calculated from gravity, it is not possible to calculate the angle Z with this formula or with any other. To do this you need another component: the magnetometer, which is a type of digital compass. The MPU-6050 does not carry a magnetometer, and therefore can never accurately calculate the angle Z. However, for the vast majority of applications only the X and Y axes are needed.
+        If we know the initial angle of the IMU, we can add the value that marks the gyroscope to know the new angle at each moment. Suppose we start the IMU at 0 °. If the gives us out a measurement every second, and marks 3 on the X axis, we will have the angle with this simple formula:
+        
+        Where elapsedTime is the time that elapses each time this formula is calculated inside of the loop, PreviousAngle is the angle calculated the last time this formula was called and GyroData is the reading of the angle Y or X of the gyroscope. And the same thing happens with all the axes. Only the Z axis is usually ignored, since when you cannot calculate an Z-angle with the Accelerometer, you can not apply a Supplementary Filter for the Z-axis. We already have the readings.
     </p>
 
-    <h2>Advantages over other Firmware-Only Implementations</h2>
-    <p> •	All customizable code written in ANSI-C and thus easier to maintain.
-      •	Modular concept: easier to integrate into existing designs.
-      •	Slightly smaller code size in spite of high level language modules.
-      •	Faster: All encoding/decoding (USB requires NRZI coding and bit stuffing) is done in real-time, not in the main loop after storing away the raw data stream.
-      •	More endpoints, USB descriptors can be better customized.
-      •	V-USB comes with a free shared Vendor- / Product-ID pair.
-      •	The level of standards conformance is documented (description of limitations and potential problems).
-      •	Licensed under the terms of the GNU General Public License or alternatively under a commercial license.
+    <h2>Noise and Errors</h2>
+    <p> You have to eliminate the noise, the drift and get the accelerometer to not change its angle when it detects a force other than gravity
+        One of the best is the famous Kálman Filter, which is used in aircraft, rockets and geostationary satellites.Not very practical with an Arduino
+        Complementary Filter is actually a union of two different filters: a High-pass Filter for the gyroscope and a Low-pass Filter for the Accelerometer. The first lets only pass the values ​​above a certain limit, unlike the Low-pass filter, which only allows those below.
     </p>
    
     <figure id="building">
-      <img src="../Andridge_Munene/images/LORA MESH CLOUD NETWORK" style="width: 90%;">
-      <figcaption>PCB DESIGN FOR THE SENSOR NODES</figcaption>
+      <img src="../Andridge_Munene/images/PID CONTROLLER MOTOT DRIVER" style="width: 90%;">
+      <figcaption>PCB DESIGN FOR SELF STABILIZING DRONE.</figcaption>
     </figure>
 
-    <h2>References and Citations</h2>
-    <p>Use a numbered list of references at the end of the article, ordered alphabetically by first author, and referenced by numbers in brackets <span class="cites"><a href="#anderson92"></a><a href="#klemmer02"></a><a href="#mather00"></a><a href="#zellweger01"></a></span>. Kindly make the text of this section ragged-right, so that the increasing number of references/citations with web addresses/urls do not have large word and letter spacing. For papers from conference proceedings, include the title of the paper and an abbreviated name of the conference (e.g., for Interact 2003 proceedings, use <em>Proc. Interact 2003</em>). Do not include the location of the conference or the exact date; do include the page numbers if available. See the examples of citations at the end of this document.</p>
+    
 
     <figure class="col-span">
-      <img src="../Andridge_Munene/images/LORA MESH CLOUD NETWORK" style="width: 100%;">
-      <figcaption>SPCB DESIGN FOR THE SENSOR NODES.</figcaption>
+      <img src="../Andridge_Munene/images/PID CONTROLLER MOTOT DRIVER" style="width: 100%;">
+      <figcaption>PCB DESIGN FOR SELF STABILIZING DRONE.</figcaption>
     </figure>
     <h1>Conclusion</h1>
-    <p>Following the design specification;any sensor can be conneted and used be for different variety of application.</p>
+    <p>Following the design specification;will result to a self stabilazing drone!</p>
     <h1>Acknowledgements</h1>
     <p>Sample Text: We thank all the volunteers, and all publications support and staff, who wrote and provided helpful comments on previous versions of this document. </p>
 
   
     <h1>References</h1>
-    <cite id="notontopic"> lora mesh cloud network visualization https://nootropicdesign.com/projectlab/2018/10/20/lora-mesh-networking/.</cite>
-    <cite id="notontopic"> avr usb https://www.obdev.at/products/vusb/index.html.</cite>
+    <cite id="PID controller"> PID controller as explainmd in wikipedia https://en.wikipedia.org/wiki/PID_controller.</cite>
+    
   </body>
 </html>
