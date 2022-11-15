@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>LORA MESH CLOUD FOR ANALOG IOT DEVICES</title>
+    <link rel="stylesheet" href="./styles.css">
+    <style>
+
+      .reminder {
+        margin-top: 32pt;
+        text-align: center;
+        font-family: Helvetica;
+        font-size: 12pt;
+        font-weight: bold;
+      }
+
+    </style>
+  </head>
+  <body>
+    <header class="col-span">
+      <h1 class="title">LORA MESH CLOUD FOR ANALOG SENSORS</h1>
+     
+        <div class="author">
+          <div>Andridge Munene Ngare</div>
+          <div>COMPUTER TECHNOLOGIST</div>
+          <div>836 00200 Karen Nairobi</div>
+          <div>munenengarw@gmail.com</div>
+          <div>+254741584376</div>
+        </div>
+    </header>
+    <div class="abstract">
+      <h1>Abstract</h1>
+      <p>Updated 15/11/2022. In this sample paper, Open seasons Co., Inc. describes the elctronic design for reliable communication of small amounts of data over long distances (several kilometers). It’s also geared toward low power applications.
+        Mesh networking of LoRa nodes is a network topology where nodes communicate with one another either directly (if they are in range) or indirectly via intermediate nodes. For example, if node 1 wants to send a message to node 2, but is too far away from node 2, the message will automatically be routed via an intermediate node that is in range, say Node 3. </p>
+        
+    
+    </p>
+
+      <h2>Lora 1278X module </h2>
+      <p>
+        <p><b>The Radiohead library will be used in this project, because it includes an implementation of mesh networking.</b><br>There is also a transistor as switch if you want to regulate work of LoRa module (RFM95W) with it. When you give signal from digital pin, it will turn on or off</p>
+        <span style="color: red;">Radiohead library will be included with next publication.</span>
+      </p>
+
+      <h2>RTC clock</h2>
+      <p><p><b>RTC</b> is based on <b>DS3231 chip</b> and can be used for setting alarm for wakeup time of board. It is connected to D2 pin so you can interrupt microprocessor. It is great if you want change wake up intervals from distance. It is possible with downlink messages from TTN server.</p></span></p>
+    </div>
+
+    <h1>Introduction</h1>
+    <p>It is based on ATMega328 tqfp microprocessor. ICSP programming is need to load the bootloader to the tqfp chip.
+      V-USB is used for software-only implementation of a low-speed USB device for Atmel’s AVR® microcontrollers, making it possible to build USB hardware with almost any AVR® microcontroller, not requiring any additional chip. Operating the AVR at higher voltages exceeds the common mode range of many USB chips. Therefore, a voltage regulator from 5v to 3v is needed. If there’s need to run the AVR at 5 V, add 3.6 V zener diodes at D+ and D- to limit the voltage.</p>
+
+    <h1>Advantages over Microcontrollers with USB Hardware</h1>
+    <p>•	Standard AVR controllers are usually easier to obtain.
+      •	Most of the controllers with USB support are only available in SMD, which is almost impossible to handle for hobbyists.
+      •	V-USB comes with a free shared Vendor- / Product-ID pair.
+      •	A good free ANSI-C compiler (GNU gcc) and a free development system for Windows (WinAVR) are available for AVR.
+      •	AVR controllers are faster than most of the controllers with integrated USB and cost less.
+      •	Stand-alone operation: Some of the USB controllers download their firmware from the host computer into RAM. They don’t work without connection to the host.
+      •	AVR controllers have on-chip EEPROM.
+    </p>
+
+    <h1>Advantages over separate USB Peripheral</h1>
+    <p>•	No additional cost.
+      •	No additional hardware complexity: simpler PCB, less failures.
+      •	No additional power consumption when USB is disconnected. This may be relevant for battery powered devices.
+      •	More freedom in the choice of USB descriptors.
+      •	V-USB comes with a free shared Vendor- / Product-ID pair.
+      •	Little hardware resources used: only two to three I/O pins.
+    </p>
+
+    <h2>Advantages over other Firmware-Only Implementations</h2>
+    <p> •	All customizable code written in ANSI-C and thus easier to maintain.
+      •	Modular concept: easier to integrate into existing designs.
+      •	Slightly smaller code size in spite of high level language modules.
+      •	Faster: All encoding/decoding (USB requires NRZI coding and bit stuffing) is done in real-time, not in the main loop after storing away the raw data stream.
+      •	More endpoints, USB descriptors can be better customized.
+      •	V-USB comes with a free shared Vendor- / Product-ID pair.
+      •	The level of standards conformance is documented (description of limitations and potential problems).
+      •	Licensed under the terms of the GNU General Public License or alternatively under a commercial license.
+    </p>
+   
+    <figure id="building">
+      <img src="../Andridge_Munene/images/LORA MESH CLOUD NETWORK" style="width: 90%;">
+      <figcaption>PCB DESIGN FOR THE SENSOR NODES</figcaption>
+    </figure>
+
+    <h2>References and Citations</h2>
+    <p>Use a numbered list of references at the end of the article, ordered alphabetically by first author, and referenced by numbers in brackets <span class="cites"><a href="#anderson92"></a><a href="#klemmer02"></a><a href="#mather00"></a><a href="#zellweger01"></a></span>. Kindly make the text of this section ragged-right, so that the increasing number of references/citations with web addresses/urls do not have large word and letter spacing. For papers from conference proceedings, include the title of the paper and an abbreviated name of the conference (e.g., for Interact 2003 proceedings, use <em>Proc. Interact 2003</em>). Do not include the location of the conference or the exact date; do include the page numbers if available. See the examples of citations at the end of this document.</p>
+
+    <figure class="col-span">
+      <img src="../Andridge_Munene/images/LORA MESH CLOUD NETWORK" style="width: 100%;">
+      <figcaption>SPCB DESIGN FOR THE SENSOR NODES.</figcaption>
+    </figure>
+    <h1>Conclusion</h1>
+    <p>Following the design specification;any sensor can be conneted and used be for different variety of application.</p>
+    <h1>Acknowledgements</h1>
+    <p>Sample Text: We thank all the volunteers, and all publications support and staff, who wrote and provided helpful comments on previous versions of this document. </p>
+
+  
+    <h1>References</h1>
+    <cite id="notontopic"> lora mesh cloud network visualization https://nootropicdesign.com/projectlab/2018/10/20/lora-mesh-networking/.</cite>
+    <cite id="notontopic"> avr usb https://www.obdev.at/products/vusb/index.html.</cite>
+  </body>
+</html>
